@@ -1,18 +1,33 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Navigation from "../components/Navigation";
+import Card from "../components/Card";
 
 const Countries = () => {
   const [data, setData] = useState([]);
+  const [rangeValue, setRangeValue] = useState(6);
+
   useEffect(() => {
     axios
       .get("https://restcountries.com/v3.1/all")
-      .then((res) => console.log(res.data));
+      .then((res) => setData(res.data));
   }, []);
 
   return (
     <div>
-      <h1 className="countries">Countries</h1>
+      <ul className="radio-container">
+        <input
+          type="range"
+          min="1"
+          max="250"
+          defaultValue={rangeValue}
+          onChange={(e) => setRangeValue(e.target.value)}
+        />
+      </ul>
+      <ul className="countries-list">
+        {data.slice(0, rangeValue).map((country, index) => (
+          <Card key={index} country={country} />
+        ))}
+      </ul>
     </div>
   );
 };

@@ -52,9 +52,11 @@
     }
   }
 
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+}
+
+.countries-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
