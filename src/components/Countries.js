@@ -32,6 +32,7 @@ const Countries = () => {
               type="radio"
               id={continent}
               name="continentRadio"
+              checked={continent === selectedRadio}
               //   targeting selected continent
               onChange={(e) => setSelectedRadio(e.target.id)}
             />
@@ -39,6 +40,11 @@ const Countries = () => {
           </li>
         ))}
       </ul>
+      {selectedRadio && (
+        <button onClick={() => setSelectedRadio("")}>
+          Annuler la recherche
+        </button>
+      )}
       <ul className="countries-list">
         {data
           .filter((country) => country.continents[0].includes(selectedRadio))
